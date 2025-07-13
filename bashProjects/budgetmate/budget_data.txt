@@ -1,0 +1,2 @@
+income=2130
+bills[0]="Groceries:500"
