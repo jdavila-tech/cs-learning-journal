@@ -16,7 +16,7 @@ def render_status_bar(location, health, items, width=80):
     # ANSI escape for green background + white text
     print("\033[1;37;42m" + bar.ljust(width) + "\033[0m")
 
-items=[]
+
 directions =["north","south","east","west"]
 events = [
         "",
@@ -48,6 +48,18 @@ map={
         "Dungeon":{"east":"Gallery","south":"Great Hall"},
         "Cellar":{"west":"Bedroom"}
         }
+availableitems={
+        "Great Hall":"",
+        "Library":"book",
+        "kitchen":"spoon",
+        "Dining Room":"table",
+        "Bedroom":"pillow",
+        "Gallery":"painting",
+        "Dungeon":"",
+        "Cellar":"gun"
+
+        }
+items=[]
 health=100
 playerLocation="Great Hall"
 response=""
@@ -66,11 +78,18 @@ while response != "quit":
             
             print("\n" * 100)
             input("You cannot go that way!\n\nPress any key to try again!")
+    
+    elif (response.split())[0] == 'pickup':
+        if (response.split())[1] == availableitems[playerLocation]:
+            print("You have picked up a ", availableitems[playerLocation])
+            items.append(availableitems[playerLocation])
+
+
     else:
 
         print("\n" * 100)
         input("wrong direction\n\nPress any key to continue...")
-
+    # need a statement if entered wrong pickup item and need to remove picked item from main dictionary
 
 
     
